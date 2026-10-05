@@ -1,0 +1,40 @@
+name: Decode binaries for Pages
+on:
+  push:
+    branches: [main]
+    paths:
+      - '_bin/**'
+permissions:
+  contents: write
+jobs:
+  decode:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Decode _bin/*.b64 into site paths
+        run: |
+          set -euo pipefail
+          shopt -s globstar nullglob
+          for f in _bin/**/*.b64 _bin/*.b64; do
+            [ -f "$f" ] || continue
+            rel="${f#_bin/}"
+            out="${rel%.b64}"
+            mkdir -p "$(dirname "$out")"
+            base64 -d "$f" > "$out"
+            echo "decoded $f -> $out"
+          done
+          rm -rf _bin
+      - name: Commit decoded assets
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "nothing to commit"
+            exit 0
+          fi
+          git commit -m "Decode binary assets for GitHub Pages"
+          git push
