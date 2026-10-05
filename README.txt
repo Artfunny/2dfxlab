@@ -36,7 +36,7 @@ Links
 -----
 https://x.com/ArtFunny5
 https://artfunny.uk/
-https://artfunny.itch.io/
+https://artfunny.itch.io/2dfxlab
 
 Requirements
 ------------
