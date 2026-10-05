@@ -1,0 +1,14 @@
+2DFXLAB — End User License (summary)
+====================================
+
+Copyright (c) ARTfunny / ArtFunny.
+
+You may use 2DFXLAB to create effects for your own games, apps, and projects,
+including commercial projects. Generated exports (image sequences, effect.json,
+textures, and the included player files you produce) may be used commercially
+in your products.
+
+You may not resell, redistribute, or rebrand 2DFXLAB itself (this app / HTML
+package) as your own product, nor include it as a competing tool for sale.
+
+This software is provided as-is, without warranty.
